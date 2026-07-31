@@ -3,8 +3,9 @@ import pdp from '../../public/images/photo_CV.jpeg'
 function Accueil() {
   return (
     <>
-      <div className="hero min-h-screen bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('../../public/images/accueil.jpg')] bg-cover bg-center
-                      flex items-center justify-center 2xl:justify-start 2xl:p-50">
+      <div className="hero min-h-screen bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))] bg-cover bg-center
+                      flex items-center justify-center 2xl:justify-start 2xl:p-50" 
+        style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/accueil.jpg')" }}>
         <div className="hero-content flex-col lg:flex-row backdrop-blur-md rounded-md">
           <img
             src={pdp}
