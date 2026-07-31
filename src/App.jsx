@@ -24,7 +24,7 @@ function App() {
         <Accueil />
       </div>
 
-      <div className="bg-gray-100 pt-6" id="projet">
+      <div className="bg-slate-900/60 pt-6" id="projet">
         <Projets />
         <Competences />
       </div>
