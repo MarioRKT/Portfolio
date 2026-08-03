@@ -34,14 +34,6 @@ function Footer() {
             </p>
           </div>
 
-          {/* 3. Navigation Rapide */}
-          <nav className="flex flex-wrap justify-center gap-6 text-xs sm:text-sm font-medium">
-            <a href="#accueil" className="hover:text-sky-400 transition-colors">Accueil</a>
-            <a href="#about" className="hover:text-sky-400 transition-colors">À Propos</a>
-            <a href="#projet" className="hover:text-sky-400 transition-colors">Projets</a>
-            <a href="#contact" className="hover:text-sky-400 transition-colors">Contact</a>
-          </nav>
-
           {/* 4. Réseaux Sociaux & Bouton Retour en Haut */}
           <div className="flex items-center gap-4">
             
