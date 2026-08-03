@@ -1,59 +1,101 @@
-import { FileBraces } from "lucide-react";
+import { FileBraces, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLinks = [
+    { name: "ACCUEIL", href: "#accueil" },
+    { name: "À PROPOS", href: "#about" },
+    { name: "COMPÉTENCES", href: "#competences" },
+    { name: "PROJETS", href: "#projet" },
+  ];
 
   return (
-    <>
-      <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
-              </svg>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+    <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-slate-950/70 border-b border-slate-800/80 transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          
+          {/* 1. Logo / Brand */}
+          <div className="flex-shrink-0">
+            <a 
+              href="#accueil" 
+              className="group flex items-center gap-2 text-lg sm:text-xl font-black tracking-wider text-white transition-colors"
             >
-              <li>
-                <a href="#projet">PROJETS</a>
-              </li>
-
-              <li>
-                <a href="#about">A PROPOS</a>
-              </li>
-            </ul>
+              <div className="p-2 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 group-hover:scale-105 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+                <FileBraces size={22} />
+              </div>
+              <span>
+                DEV<span className="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">PORTFOLIO</span>
+              </span>
+            </a>
           </div>
-          <a className="btn btn-ghost text-xl md:flex" href="#accueil"><span className="text-sky-500 flex items-center"><FileBraces />DEV</span>PORTFOLIO</a>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 flex gap-4">
-            <li>
-              <a href="#projet">PROJETS</a>
-            </li>
-            <li>
-              <a href="#about">A PROPOS</a>
-            </li>
-          </ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn" href="#contact">CONTACT</a>
+
+          {/* 2. Menu Navigation Desktop */}
+          <nav className="hidden md:flex items-center gap-1 bg-slate-900/50 border border-slate-800/80 px-4 py-1.5 rounded-full backdrop-blur-md">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="px-4 py-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-sky-400 transition-colors duration-200 rounded-full hover:bg-slate-800/50"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* 3. Bouton Contact (CTA) Desktop */}
+          <div className="hidden md:flex items-center">
+            <a
+              href="#contact"
+              className="px-6 py-2.5 rounded-xl font-semibold text-xs tracking-wider uppercase bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+            >
+              Contact
+            </a>
+          </div>
+
+          {/* 4. Bouton Menu Hamburger Mobile */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-all"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+
         </div>
       </div>
-    </>
+
+      {/* 5. Menu Mobile Déroulant */}
+      {isOpen && (
+        <div className="md:hidden backdrop-blur-2xl bg-slate-950/95 border-b border-slate-800 px-4 pt-4 pb-6 space-y-3 transition-all">
+          <div className="flex flex-col space-y-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="px-4 py-3 rounded-xl text-sm font-semibold tracking-wider text-slate-300 hover:text-sky-400 hover:bg-slate-900 border border-transparent hover:border-slate-800 transition-all"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+          
+          <div className="pt-2">
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-center py-3 rounded-xl font-semibold text-xs tracking-wider uppercase bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-md shadow-sky-500/20"
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
 
