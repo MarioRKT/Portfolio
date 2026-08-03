@@ -1,6 +1,4 @@
-import { CircleCheckBig, Facebook, Mail, Phone, Send, MessageSquare } from "lucide-react";
-import InputNom from "../components/InputNom";
-import InputMail from "../components/InputMail";
+import { CircleCheckBig, Facebook, Mail, Phone, Send, MessageSquare, User, AtSign } from "lucide-react";
 
 function Contact() {
   return (
@@ -118,12 +116,38 @@ function Contact() {
 
             <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
               
-              {/* Inputs Personnalisés (Nom & Email) */}
-              <div className="space-y-4">
-                <InputNom />
-                <InputMail />
+              {/* Nouveau Champ Nom */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                  Votre Nom
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    className="w-full bg-slate-900/90 border border-slate-800 rounded-xl py-3.5 pl-11 pr-4 text-slate-200 text-sm placeholder:text-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all duration-300"
+                    placeholder="Ex: Jean Dupont"
+                    required
+                  />
+                  <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+                </div>
               </div>
-              
+
+              {/* Nouveau Champ Email */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                  Votre Adresse Email
+                </label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    className="w-full bg-slate-900/90 border border-slate-800 rounded-xl py-3.5 pl-11 pr-4 text-slate-200 text-sm placeholder:text-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all duration-300"
+                    placeholder="nom@exemple.com"
+                    required
+                  />
+                  <AtSign size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+                </div>
+              </div>
+
               {/* Zone de Message */}
               <div className="space-y-1.5">
                 <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">
