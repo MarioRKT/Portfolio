@@ -6,9 +6,8 @@ function Navbar() {
 
   const navLinks = [
     { name: "ACCUEIL", href: "#accueil" },
-    { name: "À PROPOS", href: "#about" },
-    { name: "COMPÉTENCES", href: "#competences" },
     { name: "PROJETS", href: "#projet" },
+    { name: "À PROPOS", href: "#about" }    
   ];
 
   return (
