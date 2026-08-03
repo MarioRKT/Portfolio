@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css"; // N'oubliez pas l'import du CSS !
+import "aos/dist/aos.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Accueil from "./pages/Accueil";
@@ -13,31 +13,41 @@ function App() {
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      once: false
+      once: false,
     });
   }, []);
+
   return (
-    <>
+    <div className="bg-slate-950 text-white min-h-screen scroll-smooth selection:bg-sky-500 selection:text-white">
+      {/* Navbar Fixe / Sticky */}
       <Navbar />
 
-      <div id="accueil">
-        <Accueil />
-      </div>
+      {/* Main Content avec sections fluides */}
+      <main className="flex flex-col">
+        <section id="accueil" className="scroll-mt-20">
+          <Accueil />
+        </section>
 
-      <div className="bg-slate-900/60 pt-6" id="projet">
-        <Projets />
-        <Competences />
-      </div>
+        <section id="projet" className="scroll-mt-20">
+          <Projets />
+        </section>
 
-      <div id="about" className="pt-6">
-        <Apropos />
-      </div>
+        <section id="competences" className="scroll-mt-20">
+          <Competences />
+        </section>
 
-      <div className="md:mx-4 pt-8" id="contact">
-        <Contact />
-      </div>
+        <section id="about" className="scroll-mt-20">
+          <Apropos />
+        </section>
+
+        <section id="contact" className="scroll-mt-20">
+          <Contact />
+        </section>
+      </main>
+
+      {/* Pied de page */}
       <Footer />
-    </>
+    </div>
   );
 }
 
