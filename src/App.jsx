@@ -33,7 +33,7 @@ function App() {
         <Apropos />
       </div>
 
-      <div className="mx-1 md:mx-4 pt-8" id="contact">
+      <div className="md:mx-4 pt-8" id="contact">
         <Contact />
       </div>
       <Footer />
