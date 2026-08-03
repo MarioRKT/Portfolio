@@ -8,9 +8,9 @@ import {
   faLaravel, 
   faSymfony, 
   faMagento, 
+  faTailwindCss,
   faBootstrap 
 } from "@fortawesome/free-brands-svg-icons";
-import { faWind } from "@fortawesome/free-solid-svg-icons"; // Tailwind CSS utilise souvent faWind sur Font Awesome
 
 function Competences() {
   const skills = [
@@ -64,7 +64,7 @@ function Competences() {
     },
     { 
       name: "Tailwind CSS", 
-      icon: faWind, 
+      icon: faTailwindCss,  
       iconColor: "text-[#06B6D4]",
       cardColor: "hover:border-cyan-400/50 hover:shadow-cyan-400/20" 
     },
