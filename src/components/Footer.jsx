@@ -1,51 +1,69 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { FileBraces, Github, Linkedin, Facebook, Mail, ArrowUp } from "lucide-react";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="relative bg-slate-950 text-slate-400 border-t border-slate-800/80 overflow-hidden selection:bg-sky-500 selection:text-white">
-      
-      {/* 1. Halo lumineux discret en fond */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[150px] bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-slate-800/60">
-          
-          {/* 2. Brand & Description */}
+    <footer 
+      className="relative border-t border-[#413333]/10 pt-12 pb-8 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[#F2765E] selection:text-white"
+      style={{ backgroundColor: "#F5EBDD" }}
+    >
+      <div className="max-w-6xl mx-auto space-y-10">
+        
+        {/* Partie Haute : Brand, Bio, Réseaux & Scroll Top */}
+        <div 
+          className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-[#413333]/10"
+          data-aos="fade-up"
+        >
+          {/* Brand & Courte Description */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3">
             <a 
               href="#accueil" 
-              className="group flex items-center gap-2 text-lg font-black tracking-wider text-white transition-colors"
+              className="group flex items-center gap-2.5 text-lg font-bold tracking-wider transition-colors"
             >
-              <div className="p-2 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 group-hover:scale-105 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+              <div 
+                className="p-2 rounded-xl transition-transform duration-300 group-hover:scale-105"
+                style={{ backgroundColor: "#315B8C", color: "#F5EBDD" }}
+              >
                 <FileBraces size={20} />
               </div>
-              <span>
-                DEV<span className="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">PORTFOLIO</span>
+              <span className="font-extrabold" style={{ color: "#413333" }}>
+                DEV<span style={{ color: "#F2765E" }}>PORTFOLIO</span>
               </span>
             </a>
-            <p className="text-xs sm:text-sm text-slate-400 max-w-sm">
+            <p className="text-xs sm:text-sm max-w-sm leading-relaxed" style={{ color: "#315B8C" }}>
               Développeur Web & Support IT. Conception d'applications modernes, performantes et sur-mesure.
             </p>
           </div>
 
-          {/* 4. Réseaux Sociaux & Bouton Retour en Haut */}
-          <div className="flex items-center gap-4">
+          {/* Réseaux Sociaux & Bouton Retour en haut */}
+          <div className="flex items-center gap-3">
             
-            {/* Github */}
+            {/* GitHub */}
             <a
               href="https://github.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-sky-500/50 hover:bg-slate-800/80 transition-all duration-300"
               aria-label="GitHub"
+              className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 hover:bg-white transition-all duration-300 hover:shadow-sm group"
+              style={{ color: "#315B8C" }}
             >
-              <Github size={18} />
+              <Github size={18} className="group-hover:scale-110 transition-transform" />
             </a>
 
             {/* LinkedIn */}
@@ -53,10 +71,11 @@ function Footer() {
               href="https://linkedin.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-sky-400 hover:border-sky-500/50 hover:bg-slate-800/80 transition-all duration-300"
               aria-label="LinkedIn"
+              className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 hover:bg-white transition-all duration-300 hover:shadow-sm group"
+              style={{ color: "#315B8C" }}
             >
-              <Linkedin size={18} />
+              <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
             </a>
 
             {/* Facebook */}
@@ -64,44 +83,51 @@ function Footer() {
               href="https://facebook.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-slate-800/80 transition-all duration-300"
               aria-label="Facebook"
+              className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 hover:bg-white transition-all duration-300 hover:shadow-sm group"
+              style={{ color: "#315B8C" }}
             >
-              <Facebook size={18} />
+              <Facebook size={18} className="group-hover:scale-110 transition-transform" />
             </a>
 
             {/* Mail */}
             <a
               href="mailto:rakotoarimananamario6@gmail.com"
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-slate-800/80 transition-all duration-300"
               aria-label="Email"
+              className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 hover:bg-white transition-all duration-300 hover:shadow-sm group"
+              style={{ color: "#315B8C" }}
             >
-              <Mail size={18} />
+              <Mail size={18} className="group-hover:scale-110 transition-transform" />
             </a>
 
-            {/* Separateur */}
-            <div className="h-6 w-px bg-slate-800 mx-1" />
+            {/* Séparateur vertical */}
+            <div className="h-6 w-px bg-[#413333]/15 mx-1" />
 
             {/* Bouton Scroll Top */}
             <button
               onClick={scrollToTop}
-              className="p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-300 shadow-lg shadow-sky-500/10 group cursor-pointer"
               aria-label="Retour en haut"
+              className="p-3 rounded-xl transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md group"
+              style={{ backgroundColor: "#F2765E", color: "#ffffff" }}
             >
               <ArrowUp size={18} className="group-hover:-translate-y-0.5 transition-transform" />
             </button>
 
           </div>
-
         </div>
 
-        {/* 5. Copyright & Mention */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        {/* Partie Basse : Copyright & Mentions */}
+        <div 
+          className="flex flex-col sm:flex-row items-center justify-between text-xs gap-4 font-medium"
+          style={{ color: "#413333" }}
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           <p className="text-center sm:text-left">
-            © {currentYear} <span className="text-slate-300 font-semibold">RAKOTOARIMANANA MARIO</span>. Tous droits réservés.
+            © {currentYear} <span className="font-bold" style={{ color: "#F2765E" }}>RAKOTOARIMANANA MARIO</span>. Tous droits réservés.
           </p>
-          <p className="text-center sm:text-right text-slate-600">
-            Fait avec React & Tailwind CSS
+          <p className="text-center sm:text-right opacity-80" style={{ color: "#315B8C" }}>
+            Conçu & développé avec React & Tailwind CSS
           </p>
         </div>
 

@@ -8,6 +8,7 @@ import Apropos from "./pages/Apropos";
 import Competences from "./pages/Competences";
 import Contact from "./pages/Contact";
 import Projets from "./pages/Projets";
+import Services from "./pages/Services";
 
 function App() {
   useEffect(() => {
@@ -28,12 +29,16 @@ function App() {
           <Accueil />
         </section>
 
-        <section id="projet" className="scroll-mt-20">
-          <Projets />
+        <section id="accueil" className="scroll-mt-20">
+          <Services />
         </section>
 
         <section id="competences" className="scroll-mt-20">
           <Competences />
+        </section>
+
+        <section id="projet" className="scroll-mt-20">
+          <Projets />
         </section>
 
         <section id="about" className="scroll-mt-20">

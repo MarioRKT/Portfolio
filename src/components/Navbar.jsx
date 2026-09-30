@@ -3,16 +3,13 @@ import { useState, useEffect } from "react";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  // State pour suivre le lien actif (par défaut #accueil)
   const [activeHash, setActiveHash] = useState("#accueil");
 
   useEffect(() => {
-    // Récupérer le hash de l'URL courante au montage
     if (window.location.hash) {
       setActiveHash(window.location.hash);
     }
 
-    // Mettre à jour quand le hash change
     const handleHashChange = () => {
       setActiveHash(window.location.hash || "#accueil");
     };
@@ -23,12 +20,13 @@ function Navbar() {
 
   const navLinks = [
     { name: "ACCUEIL", href: "#accueil" },
-    { name: "PROJETS", href: "#projet" },
+    { name: "SERVICES", href: "#services" },
+    { name: "MES COMPETENCES", href: "#competences" },
     { name: "À PROPOS", href: "#about" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-slate-950/70 border-b border-slate-800/80 transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full bg-[#F5EBDD]/90 backdrop-blur-md border-b border-[#315B8C]/15 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
@@ -37,19 +35,20 @@ function Navbar() {
             <a 
               href="#accueil" 
               onClick={() => setActiveHash("#accueil")}
-              className="group flex items-center gap-2 text-lg sm:text-xl font-black tracking-wider text-white transition-colors"
+              className="group flex items-center gap-2.5 text-lg sm:text-xl font-black tracking-wider transition-colors"
             >
-              <div className="p-2 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 group-hover:scale-105 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+              <div className="p-2 rounded-xl bg-[#315B8C]/10 border border-[#315B8C]/20 text-[#315B8C] group-hover:bg-[#315B8C] group-hover:text-[#F5EBDD] transition-all duration-300">
                 <FileBraces size={22} />
               </div>
-              <span>
-                DEV<span className="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">PORTFOLIO</span>
+              <span className="font-mono font-black tracking-tight">
+                <span className="text-[#F2765E]">DEV</span>
+                <span className="text-[#315B8C]">.PORTFOLIO</span>
               </span>
             </a>
           </div>
 
-          {/* 2. Menu Navigation Desktop */}
-          <nav className="hidden md:flex items-center gap-1 bg-slate-900/50 border border-slate-800/80 px-4 py-1.5 rounded-full backdrop-blur-md">
+          {/* 2. Navigation Desktop */}
+          <nav className="hidden md:flex items-center gap-1 bg-white/70 border border-[#315B8C]/15 px-3 py-1.5 rounded-full shadow-sm">
             {navLinks.map((link) => {
               const isActive = activeHash === link.href;
               return (
@@ -57,10 +56,10 @@ function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setActiveHash(link.href)}
-                  className={`px-4 py-2 text-xs font-semibold tracking-wider transition-all duration-200 rounded-full ${
+                  className={`px-4 py-2 text-xs font-mono font-bold tracking-wider transition-all duration-200 rounded-full ${
                     isActive
-                      ? "text-sky-400 bg-slate-800/80 border border-slate-700/50 shadow-sm"
-                      : "text-slate-300 hover:text-sky-400 hover:bg-slate-800/50 border border-transparent"
+                      ? "text-[#F5EBDD] bg-[#315B8C] shadow-sm"
+                      : "text-[#413333] hover:text-[#F2765E] hover:bg-[#315B8C]/5"
                   }`}
                 >
                   {link.name}
@@ -74,19 +73,21 @@ function Navbar() {
             <a
               href="#contact"
               onClick={() => setActiveHash("#contact")}
-              className={`px-6 py-2.5 rounded-xl font-semibold text-xs tracking-wider uppercase bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] ${
-                activeHash === "#contact" ? "ring-2 ring-sky-400 ring-offset-2 ring-offset-slate-950" : ""
+              className={`px-6 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase font-mono transition-all duration-300 active:scale-95 text-center ${
+                activeHash === "#contact"
+                  ? "bg-transparent text-[#F2765E] border-2 border-[#F2765E]"
+                  : "bg-[#F2765E] text-[#F5EBDD] border-2 border-[#F2765E] hover:bg-transparent hover:text-[#F2765E] shadow-sm"
               }`}
             >
               Contact
             </a>
           </div>
 
-          {/* 4. Bouton Menu Hamburger Mobile */}
+          {/* 4. Bouton Hamburger Mobile */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-all"
+              className="p-2.5 rounded-xl bg-white/80 border border-[#315B8C]/20 text-[#315B8C] hover:text-[#F2765E] hover:border-[#F2765E] transition-all"
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -98,7 +99,7 @@ function Navbar() {
 
       {/* 5. Menu Mobile Déroulant */}
       {isOpen && (
-        <div className="md:hidden backdrop-blur-2xl bg-slate-950/95 border-b border-slate-800 px-4 pt-4 pb-6 space-y-3 transition-all">
+        <div className="md:hidden bg-[#F5EBDD] border-b border-[#315B8C]/20 px-4 pt-3 pb-6 space-y-3 shadow-lg">
           <div className="flex flex-col space-y-1">
             {navLinks.map((link) => {
               const isActive = activeHash === link.href;
@@ -110,10 +111,10 @@ function Navbar() {
                     setActiveHash(link.href);
                     setIsOpen(false);
                   }}
-                  className={`px-4 py-3 rounded-xl text-sm font-semibold tracking-wider transition-all ${
+                  className={`px-4 py-3 rounded-xl text-xs font-mono font-bold tracking-wider transition-all ${
                     isActive
-                      ? "text-sky-400 bg-slate-900 border border-slate-800"
-                      : "text-slate-300 hover:text-sky-400 hover:bg-slate-900/50 border border-transparent"
+                      ? "text-[#F5EBDD] bg-[#315B8C]"
+                      : "text-[#413333] hover:text-[#F2765E] hover:bg-[#315B8C]/10"
                   }`}
                 >
                   {link.name}
@@ -129,7 +130,7 @@ function Navbar() {
                 setActiveHash("#contact");
                 setIsOpen(false);
               }}
-              className="block w-full text-center py-3 rounded-xl font-semibold text-xs tracking-wider uppercase bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-md shadow-sky-500/20"
+              className="block w-full text-center py-3 rounded-xl font-mono font-bold text-xs tracking-wider uppercase bg-[#F2765E] text-[#F5EBDD] border-2 border-[#F2765E] shadow-sm active:scale-95"
             >
               Contact
             </a>

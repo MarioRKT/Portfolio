@@ -1,175 +1,285 @@
-import { CircleCheckBig, Facebook, Mail, Phone, Send, MessageSquare, User, AtSign } from "lucide-react";
+import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { 
+  Mail, 
+  Phone, 
+  Facebook, 
+  MessageSquare, 
+  User, 
+  AtSign, 
+  Send, 
+  Loader2, 
+  CheckCircle2, 
+  Clock 
+} from "lucide-react";
 
 function Contact() {
+  const [status, setStatus] = useState({ submitting: false, succeeded: false, error: false });
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ submitting: true, succeeded: false, error: false });
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xaenkpjr", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setStatus({ submitting: false, succeeded: true, error: false });
+        form.reset();
+      } else {
+        setStatus({ submitting: false, succeeded: false, error: true });
+      }
+    } catch {
+      setStatus({ submitting: false, succeeded: false, error: true });
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-16 px-4 bg-slate-950 text-white selection:bg-sky-500 selection:text-white overflow-hidden">
-      
-      {/* 1. Effets d'ambiance en arrière-plan (Glow Orbs) */}
-      <div className="absolute top-1/3 -right-20 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -left-20 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
-
-      {/* 2. Conteneur Principal (Glassmorphism moderne) */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto backdrop-blur-xl bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl shadow-sky-950/20">
+    <section 
+      className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[#F2765E] selection:text-white"
+      style={{ backgroundColor: '#F5EBDD' }}
+    >
+      <div className="w-full max-w-6xl mx-auto space-y-16">
         
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch">
+        {/* En-tête de section */}
+        <div className="text-center max-w-2xl mx-auto space-y-4" data-aos="fade-down">
+          <span 
+            className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full border border-[#413333]/15 inline-block"
+            style={{ color: '#413333' }}
+          >
+            Contact & Collaboration
+          </span>
+          <h1 
+            className="text-3xl sm:text-5xl font-bold tracking-tight"
+            style={{ color: '#F2765E' }}
+          >
+            Travaillons ensemble
+          </h1>
+          <p 
+            className="text-base sm:text-lg leading-relaxed font-normal"
+            style={{ color: '#315B8C' }}
+          >
+            Un projet web en vue ou une opportunité de collaboration ? Envoyez-moi un message pour en discuter.
+          </p>
+        </div>
+
+        {/* Grille principale */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* 3. Colonne de Gauche : Infos de contact */}
-          <div className="w-full lg:w-[45%] flex flex-col justify-between space-y-8">
+          {/* Colonne Gauche : Coordonnées */}
+          <div className="lg:col-span-5 space-y-6" data-aos="fade-right" data-aos-delay="100">
             
-            <div className="space-y-4 text-center lg:text-left">
-              <span className="text-xs sm:text-sm font-semibold tracking-wider text-sky-400 uppercase">
-                Contact & Dispo 👋
-              </span>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
-                Travaillons <br className="hidden sm:inline" />
-                <span className="bg-gradient-to-r from-sky-400 via-indigo-400 to-cyan-300 bg-clip-text text-transparent">
-                  ensemble
-                </span>
-              </h1>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-                Un projet en tête ou une opportunité de collaboration ? N'hésite pas à me contacter via le formulaire ou sur mes réseaux.
-              </p>
-            </div>
-
-            {/* Cartes d'informations interactives */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+            <div className="bg-white/70 border border-[#413333]/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm backdrop-blur-sm">
+              <h2 className="text-xl font-bold" style={{ color: '#F2765E' }}>
+                Coordonnées
+              </h2>
               
-              {/* EMAIL */}
-              <a 
-                href="mailto:rakotoarimananamario6@gmail.com"
-                className="group p-4 rounded-2xl bg-slate-800/40 border border-slate-800 hover:border-sky-500/50 hover:bg-slate-800/80 transition-all duration-300 flex items-center gap-4"
-              >
-                <div className="p-3 rounded-xl bg-sky-500/10 text-sky-400 group-hover:scale-110 group-hover:bg-sky-500 group-hover:text-white transition-all">
-                  <Mail size={20} />
-                </div>
-                <div className="overflow-hidden">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">EMAIL</p>
-                  <h2 className="text-xs sm:text-sm font-medium text-slate-200 truncate group-hover:text-sky-300 transition-colors">
-                    rakotoarimananamario6@gmail.com
-                  </h2>
-                </div>
-              </a>
+              <div className="space-y-4">
+                {/* Email */}
+                <a 
+                  href="mailto:rakotoarimananamario6@gmail.com"
+                  className="group flex items-center gap-4 p-3.5 rounded-xl border border-transparent hover:border-[#315B8C]/20 hover:bg-white transition-all duration-300"
+                >
+                  <div 
+                    className="p-3 rounded-lg shrink-0 transition-transform duration-300 group-hover:scale-105"
+                    style={{ backgroundColor: '#315B8C', color: '#F5EBDD' }}
+                  >
+                    <Mail size={20} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium uppercase tracking-wider opacity-70" style={{ color: '#413333' }}>
+                      Email
+                    </p>
+                    <p className="text-xs sm:text-sm font-semibold truncate" style={{ color: '#315B8C' }}>
+                      rakotoarimananamario6@gmail.com
+                    </p>
+                  </div>
+                </a>
 
-              {/* WHATSAPP */}
-              <a 
-                href="https://wa.me/261345495921" 
-                target="_blank" 
-                rel="noreferrer"
-                className="group p-4 rounded-2xl bg-slate-800/40 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800/80 transition-all duration-300 flex items-center gap-4"
-              >
-                <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <Phone size={20} />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">WHATSAPP / TEL</p>
-                  <h2 className="text-xs sm:text-sm font-medium text-slate-200 group-hover:text-emerald-300 transition-colors">
-                    034 54 959 21
-                  </h2>
-                </div>
-              </a>
+                {/* WhatsApp / Téléphone */}
+                <a 
+                  href="https://wa.me/261345495921" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="group flex items-center gap-4 p-3.5 rounded-xl border border-transparent hover:border-[#315B8C]/20 hover:bg-white transition-all duration-300"
+                >
+                  <div 
+                    className="p-3 rounded-lg shrink-0 transition-transform duration-300 group-hover:scale-105"
+                    style={{ backgroundColor: '#315B8C', color: '#F5EBDD' }}
+                  >
+                    <Phone size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wider opacity-70" style={{ color: '#413333' }}>
+                      WhatsApp / Tél
+                    </p>
+                    <p className="text-xs sm:text-sm font-semibold" style={{ color: '#315B8C' }}>
+                      +261 34 54 959 21
+                    </p>
+                  </div>
+                </a>
 
-              {/* FACEBOOK */}
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noreferrer"
-                className="group p-4 rounded-2xl bg-slate-800/40 border border-slate-800 hover:border-indigo-500/50 hover:bg-slate-800/80 transition-all duration-300 flex items-center gap-4"
-              >
-                <div className="p-3 rounded-xl bg-indigo-500/10 text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all">
-                  <Facebook size={20} />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">FACEBOOK</p>
-                  <h2 className="text-xs sm:text-sm font-medium text-slate-200 group-hover:text-indigo-300 transition-colors">
-                    Rakotoarimanana Mario
-                  </h2>
-                </div>
-              </a>
-
-              {/* DISPONIBILITE */}
-              <div className="p-4 rounded-2xl bg-slate-800/20 border border-slate-800/60 flex items-center gap-4">
-                <div className="p-3 rounded-xl bg-sky-400/10 text-sky-400 shrink-0">
-                  <CircleCheckBig size={20} />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">DISPONIBILITÉ</p>
-                  <h2 className="text-xs sm:text-sm font-medium text-slate-300">
-                    Ouvert aux opportunités <span className="text-sky-400 font-semibold">Freelance</span> & <span className="text-indigo-400 font-semibold">CDI</span>
-                  </h2>
-                </div>
+                {/* Facebook */}
+                <a 
+                  href="https://facebook.com" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="group flex items-center gap-4 p-3.5 rounded-xl border border-transparent hover:border-[#315B8C]/20 hover:bg-white transition-all duration-300"
+                >
+                  <div 
+                    className="p-3 rounded-lg shrink-0 transition-transform duration-300 group-hover:scale-105"
+                    style={{ backgroundColor: '#315B8C', color: '#F5EBDD' }}
+                  >
+                    <Facebook size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wider opacity-70" style={{ color: '#413333' }}>
+                      Facebook
+                    </p>
+                    <p className="text-xs sm:text-sm font-semibold" style={{ color: '#315B8C' }}>
+                      Rakotoarimanana Mario
+                    </p>
+                  </div>
+                </a>
               </div>
 
+              {/* Statut de disponibilité */}
+              <div 
+                className="pt-4 border-t border-[#413333]/10 flex items-center gap-3 text-xs sm:text-sm font-medium"
+                style={{ color: '#413333' }}
+              >
+                <Clock size={16} style={{ color: '#F2765E' }} />
+                <span>Disponible pour de nouveaux projets</span>
+              </div>
             </div>
+
           </div>
 
-          {/* 4. Colonne de Droite : Formulaire de Message */}
-          <div className="w-full lg:w-[55%] bg-slate-950/40 border border-slate-800/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-center">
-            
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-400">
-                <MessageSquare size={20} />
+          {/* Colonne Droite : Formulaire */}
+          <div className="lg:col-span-7" data-aos="fade-left" data-aos-delay="200">
+            <div className="bg-white border border-[#413333]/10 rounded-2xl p-6 sm:p-8 shadow-sm">
+              
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#413333]/10">
+                <MessageSquare size={20} style={{ color: '#F2765E' }} />
+                <h2 className="text-xl font-bold" style={{ color: '#413333' }}>
+                  Envoyer un message
+                </h2>
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white">
-                Envoyez-moi un message
-              </h2>
+
+              {status.succeeded ? (
+                <div 
+                  className="py-12 px-6 rounded-xl text-center space-y-3"
+                  style={{ backgroundColor: '#F5EBDD' }}
+                >
+                  <CheckCircle2 size={32} className="mx-auto" style={{ color: '#315B8C' }} />
+                  <h3 className="text-lg font-bold" style={{ color: '#F2765E' }}>
+                    Message bien reçu !
+                  </h3>
+                  <p className="text-xs sm:text-sm max-w-md mx-auto" style={{ color: '#413333' }}>
+                    Merci pour votre message. Je reviendrai vers vous dans les plus brefs délais.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  
+                  {/* Champ Nom */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#413333' }}>
+                      Nom complet
+                    </label>
+                    <div className="relative">
+                      <input
+                        name="name"
+                        type="text"
+                        required
+                        placeholder="Jean Dupont"
+                        className="w-full bg-[#F5EBDD]/40 border border-[#413333]/20 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-[#315B8C] focus:bg-white transition-all duration-200"
+                        style={{ color: '#413333' }}
+                      />
+                      <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 opacity-50" style={{ color: '#413333' }} />
+                    </div>
+                  </div>
+
+                  {/* Champ Email */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#413333' }}>
+                      Adresse Email
+                    </label>
+                    <div className="relative">
+                      <input
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="jean.dupont@exemple.com"
+                        className="w-full bg-[#F5EBDD]/40 border border-[#413333]/20 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-[#315B8C] focus:bg-white transition-all duration-200"
+                        style={{ color: '#413333' }}
+                      />
+                      <AtSign size={18} className="absolute left-4 top-1/2 -translate-y-1/2 opacity-50" style={{ color: '#413333' }} />
+                    </div>
+                  </div>
+
+                  {/* Champ Message */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#413333' }}>
+                      Votre message
+                    </label>
+                    <textarea
+                      name="message"
+                      required
+                      placeholder="Décrivez votre projet ou votre demande..."
+                      className="w-full bg-[#F5EBDD]/40 border border-[#413333]/20 rounded-xl p-4 text-sm focus:outline-none focus:border-[#315B8C] focus:bg-white transition-all duration-200 resize-none h-36"
+                      style={{ color: '#413333' }}
+                    />
+                  </div>
+
+                  {status.error && (
+                    <p className="text-xs font-medium text-red-600">
+                      Une erreur est survenue lors de l'envoi. Veuillez réessayer.
+                    </p>
+                  )}
+
+                  {/* Bouton d'action */}
+                  <button
+                    type="submit"
+                    disabled={status.submitting}
+                    className="w-full py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ backgroundColor: '#F2765E', color: '#ffffff' }}
+                  >
+                    {status.submitting ? (
+                      <>
+                        <span>Envoi en cours...</span>
+                        <Loader2 size={16} className="animate-spin" />
+                      </>
+                    ) : (
+                      <>
+                        <span>Envoyer le message</span>
+                        <Send size={16} />
+                      </>
+                    )}
+                  </button>
+
+                </form>
+              )}
+
             </div>
-
-            <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-              
-              {/* Nouveau Champ Nom */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">
-                  Votre Nom
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className="w-full bg-slate-900/90 border border-slate-800 rounded-xl py-3.5 pl-11 pr-4 text-slate-200 text-sm placeholder:text-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all duration-300"
-                    placeholder="Ex: Jean Dupont"
-                    required
-                  />
-                  <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
-                </div>
-              </div>
-
-              {/* Nouveau Champ Email */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">
-                  Votre Adresse Email
-                </label>
-                <div className="relative">
-                  <input
-                    type="email"
-                    className="w-full bg-slate-900/90 border border-slate-800 rounded-xl py-3.5 pl-11 pr-4 text-slate-200 text-sm placeholder:text-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all duration-300"
-                    placeholder="nom@exemple.com"
-                    required
-                  />
-                  <AtSign size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
-                </div>
-              </div>
-
-              {/* Zone de Message */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">
-                  Votre Message
-                </label>
-                <textarea
-                  className="w-full bg-slate-900/90 border border-slate-800 rounded-xl p-4 text-slate-200 text-sm placeholder:text-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all duration-300 resize-none h-36"
-                  placeholder="Décrivez votre projet ou votre demande..."
-                  required
-                />
-              </div>
-              
-              {/* Bouton d'Envoi */}
-              <button 
-                type="submit"
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 group cursor-pointer"
-              >
-                <span>Envoyer le message</span>
-                <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
-              </button>
-
-            </form>
           </div>
 
         </div>

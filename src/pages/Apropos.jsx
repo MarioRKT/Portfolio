@@ -1,106 +1,221 @@
-import { Download, Sparkles, Code2, Rocket } from "lucide-react";
+import { Download, Sparkles, Briefcase } from "lucide-react";
 import img from "../../public/images/photo_CV.jpeg";
+
+// Liste des expériences professionnelles uniquement (du plus récent au plus ancien)
+const parcours = [
+  {
+    type: "experience",
+    period: "2024 - Présent",
+    title: "Développeur PHP / Magento 2",
+    place: "Poste Actuel",
+    detail:
+      "Maintenance applicative, développement de fonctionnalités sur-mesure et intégration e-commerce sous Magento 2 & PHP.",
+  },
+  {
+    type: "experience",
+    period: "Sept. - Nov. 2024",
+    title: "Stage Développeur Web Full-Stack",
+    place: "Ministère de l'Agriculture et de l'Élevage",
+    detail:
+      "Conception et développement d'une application de suivi des projets régionaux avec Laravel, React.js et Chart.js.",
+  },
+  {
+    type: "experience",
+    period: "Sept. - Nov. 2023",
+    title: "Stage Support Informatique",
+    place: "Ministère de l'Agriculture et de l'Élevage",
+    detail:
+      "Assistance aux utilisateurs, diagnostic de pannes logicielles, installation et configuration des équipements.",
+  },
+];
+
+// Frameworks mis en avant
+const frameworks = [
+  { name: "Magento 2", usage: "Boutiques en ligne & architectures e-commerce" },
+  { name: "Laravel", usage: "API REST, authentification & backend robuste" },
+  { name: "React", usage: "Interfaces dynamiques & composants réutilisables" },
+  { name: "Symfony", usage: "Applications web PHP structurées" },
+];
+
+// Langages et outils complémentaires
+const langages = ["PHP", "JavaScript", "HTML5", "CSS3", "SQL"];
+const outils = ["Tailwind CSS", "Bootstrap", "MySQL", "PostgreSQL", "Docker", "Git"];
 
 function Apropos() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-20 px-4 bg-slate-950 text-white selection:bg-sky-500 selection:text-white overflow-hidden">
-      
-      {/* 1. Effets d'ambiance en arrière-plan */}
-      <div className="absolute top-1/4 -right-20 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
+    <section
+      id="about"
+      className="relative scroll-mt-24 py-24 px-4 bg-[#F5EBDD] text-[#413333] selection:bg-[#F2765E] selection:text-[#F5EBDD] overflow-hidden"
+    >
+      {/* Motif de fond en grille neutre */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(#315B8C 1px, transparent 1px)`,
+          backgroundSize: '24px 24px'
+        }}
+      />
 
-      {/* 2. Conteneur principal Glassmorphism */}
-      <div className="relative z-10 container mx-auto max-w-5xl">
-        <div className="backdrop-blur-xl bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl shadow-sky-950/20">
-          
+      <div className="relative z-10 container mx-auto max-w-6xl space-y-8">
+        
+        {/* 1. Présentation */}
+        <div 
+          data-aos="fade-up"
+          className="bg-white/80 border-2 border-[#315B8C]/20 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm"
+        >
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             
-            {/* 3. Photo de profil avec carte visuelle & effets */}
-            <div className="w-full lg:w-5/12 flex justify-center" data-aos="flip-down">
+            {/* Photo */}
+            <div className="w-full lg:w-5/12 flex justify-center" data-aos="zoom-in" data-aos-delay="100">
               <div className="relative group w-64 sm:w-72 lg:w-80 aspect-[3/4]">
-                
-                {/* Lueur d'arrière-plan au survol */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-3xl blur opacity-30 group-hover:opacity-100 transition duration-500" />
-                
-                {/* Image principale */}
-                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-slate-700/60 shadow-2xl">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-[#315B8C]/30 shadow-md">
                   <img
                     src={img}
-                    alt="Mario Rakoto"
+                    alt="Mario Rakotoarimanana"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-[#315B8C]/10 group-hover:bg-transparent transition-colors duration-300" />
                 </div>
-
-                {/* Badge décoratif flottant en bas de l'image */}
-                <div className="absolute -bottom-4 right-4 backdrop-blur-md bg-slate-900/90 border border-slate-700/80 px-4 py-2 rounded-xl flex items-center gap-2 shadow-lg">
-                  <Sparkles size={16} className="text-sky-400 animate-pulse" />
-                  <span className="text-xs font-semibold text-slate-200">Full-Stack Dev</span>
+                
+                {/* Badge Flottant */}
+                <div className="absolute -bottom-4 right-4 bg-[#F5EBDD] border-2 border-[#315B8C]/30 px-4 py-2 rounded-xl flex items-center gap-2 shadow-md">
+                  <Sparkles size={16} className="text-[#F2765E]" />
+                  <span className="text-xs font-mono font-bold text-[#315B8C]">Developpeur Web Full-Stack</span>
                 </div>
               </div>
             </div>
 
-            {/* 4. Contenu Texte & Présentation */}
+            {/* Texte de Présentation */}
             <div className="w-full lg:w-7/12 text-center lg:text-left space-y-6">
-              
-              {/* Sur-titre & Titre */}
               <div className="space-y-3">
-                <span className="text-xs sm:text-sm font-semibold tracking-wider text-sky-400 uppercase">
-                  À Propos
+                <span className="inline-block text-xs font-mono font-bold tracking-widest text-[#F2765E] uppercase bg-[#F2765E]/10 px-3 py-1 rounded-md border-l-2 border-[#F2765E]">
+                  // À PROPOS DE MOI
                 </span>
-                <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
-                  Passionné par <br />
-                  <span className="bg-gradient-to-r from-sky-400 via-indigo-400 to-cyan-300 bg-clip-text text-transparent">
-                    le code propre
-                  </span>
-                </h1>
+                <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-[#F2765E] leading-tight">
+                  Mario Rakotoarimanana
+                </h2>
+                <p className="text-lg font-mono font-bold text-[#315B8C]">
+                  Développeur Web PHP / Magento 2
+                </p>
               </div>
 
-              {/* Bio & Paragraphe */}
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Développeur web full-stack junior, je me spécialise dans la conception d’applications web modernes, réactives et performantes. Pour moi, chaque projet est une opportunité d'appliquer les meilleures pratiques et de transformer des idées en solutions concrètes.
-              </p>
-
-              {/* Petits atouts en grille */}
-              <div className="grid grid-cols-2 gap-3 pt-2 max-w-md mx-auto lg:mx-0 text-left">
-                <div className="p-3 rounded-xl bg-slate-800/40 border border-slate-800 flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-sky-500/10 text-sky-400">
-                    <Code2 size={18} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-200">Architecture</p>
-                    <p className="text-[11px] text-slate-400">Propre & Modulaire</p>
-                  </div>
-                </div>
-
-                <div className="p-3 rounded-xl bg-slate-800/40 border border-slate-800 flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
-                    <Rocket size={18} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-200">Performance</p>
-                    <p className="text-[11px] text-slate-400">Optimisée UI/UX</p>
-                  </div>
-                </div>
+              <div className="space-y-4 text-[#413333] text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+                <p>
+                  Spécialisé dans le développement web et les architectures e-commerce, je conçois et maintiens des applications robustes centrées sur la performance et l'expérience utilisateur.
+                </p>
+                <p>
+                  Fort d'expériences en développement Full-Stack et en intégration Magento 2, je maîtrise la chaîne de production logicielle de la conception d'API REST à la gestion de bases de données relationnelles.
+                </p>
               </div>
 
-              {/* Action : Téléchargement CV */}
-              <div className="pt-4 flex justify-center lg:justify-start">
+              {/* Bouton Téléchargement CV */}
+              <div className="pt-2 flex justify-center lg:justify-start">
                 <a
-                  href="/path-to-your-cv.pdf"
+                  href="/CV_Mario_Developpeur_Fullstack.pdf"
                   download
-                  className="group relative inline-flex items-center gap-3 px-8 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-xl font-bold text-sm bg-[#F2765E] hover:bg-[#315B8C] text-[#F5EBDD] shadow-md transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F2765E]"
                 >
                   <span>Télécharger mon CV</span>
                   <Download size={18} className="group-hover:translate-y-0.5 transition-transform duration-300" />
                 </a>
               </div>
-
             </div>
 
           </div>
+        </div>
+
+        {/* 2. Expériences & Technologies */}
+        <div className="grid gap-8 lg:grid-cols-5">
+          
+          {/* Section Expériences Professionnelles */}
+          <div 
+            data-aos="fade-right"
+            data-aos-delay="200"
+            className="lg:col-span-3 bg-white/80 border-2 border-[#315B8C]/20 rounded-3xl p-6 sm:p-10 shadow-sm"
+          >
+            <h3 className="text-2xl font-black text-[#F2765E] flex items-center gap-3">
+              <Briefcase size={22} className="text-[#315B8C]" />
+              Expériences Professionnelles
+            </h3>
+
+            <ol className="mt-8 relative border-l-2 border-[#315B8C]/20 ml-3 space-y-8">
+              {parcours.map((step) => (
+                <li key={step.title} className="relative pl-8">
+                  <span className="absolute -left-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-[#F5EBDD] border-2 border-[#F2765E] text-[#F2765E]">
+                    <Briefcase size={14} />
+                  </span>
+                  <p className="text-xs font-mono font-bold text-[#F2765E]">{step.period}</p>
+                  <p className="mt-1 text-lg font-bold text-[#315B8C]">{step.title}</p>
+                  <p className="text-xs font-mono font-bold uppercase text-[#413333]/70">{step.place}</p>
+                  {step.detail && (
+                    <p className="mt-2 text-sm leading-relaxed text-[#413333] max-w-lg">
+                      {step.detail}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* Section Technologies & Stacks */}
+          <div 
+            data-aos="fade-left"
+            data-aos-delay="300"
+            className="lg:col-span-2 bg-white/80 border-2 border-[#315B8C]/20 rounded-3xl p-6 sm:p-10 shadow-sm"
+          >
+            <h3 className="text-2xl font-black text-[#F2765E]">
+              Technologies
+            </h3>
+
+            {/* Frameworks */}
+            <p className="mt-6 text-xs font-mono font-bold tracking-wider text-[#315B8C] uppercase">
+              Frameworks & CMS
+            </p>
+            <ul className="mt-3 space-y-3">
+              {frameworks.map((fw) => (
+                <li
+                  key={fw.name}
+                  className="rounded-2xl border border-[#315B8C]/20 bg-[#F5EBDD]/50 px-4 py-3"
+                >
+                  <p className="font-bold text-[#F2765E]">{fw.name}</p>
+                  <p className="text-xs text-[#413333] mt-0.5">{fw.usage}</p>
+                </li>
+              ))}
+            </ul>
+
+            {/* Langages */}
+            <p className="mt-6 text-xs font-mono font-bold tracking-wider text-[#315B8C] uppercase">
+              Langages
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {langages.map((lang) => (
+                <span
+                  key={lang}
+                  className="px-3 py-1 text-xs font-mono font-bold rounded-lg bg-[#315B8C]/10 border border-[#315B8C]/20 text-[#315B8C]"
+                >
+                  #{lang}
+                </span>
+              ))}
+            </div>
+
+            {/* Outils & BDD */}
+            <p className="mt-6 text-xs font-mono font-bold tracking-wider text-[#315B8C] uppercase">
+              Outils & Bases de données
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {outils.map((tool) => (
+                <span
+                  key={tool}
+                  className="px-3 py-1 text-xs font-mono font-bold rounded-lg bg-[#F2765E]/10 border border-[#F2765E]/20 text-[#F2765E]"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
 
         </div>
+
       </div>
     </section>
   );
