@@ -1,4 +1,4 @@
-import pdp from '../../public/images/photo_CV.jpeg';
+import pdp from '../../public/images/pdp.png';
 
 function Accueil() {
   return (
