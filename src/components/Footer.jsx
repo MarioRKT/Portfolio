@@ -1,136 +1,82 @@
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { FileBraces, Github, Linkedin, Facebook, Mail, ArrowUp } from "lucide-react";
+
+// Remplacez les liens GitHub, LinkedIn et Facebook par vos vrais profils
+const socials = [
+  { label: "GitHub", href: "https://github.com", icon: Github, external: true },
+  { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin, external: true },
+  { label: "Facebook", href: "https://facebook.com", icon: Facebook, external: true },
+  { label: "Email", href: "mailto:rakotoarimananamario6@gmail.com", icon: Mail, external: false },
+];
 
 function Footer() {
   const currentYear = new Date().getFullYear();
-
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: "ease-out-cubic",
-    });
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer 
-      className="relative border-t border-[#413333]/10 pt-12 pb-8 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[#F2765E] selection:text-white"
-      style={{ backgroundColor: "#F5EBDD" }}
-    >
-      <div className="max-w-6xl mx-auto space-y-10">
-        
-        {/* Partie Haute : Brand, Bio, Réseaux & Scroll Top */}
-        <div 
-          className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-[#413333]/10"
-          data-aos="fade-up"
-        >
-          {/* Brand & Courte Description */}
+    <footer className="border-t border-[#413333]/10 bg-[#F5EBDD] text-[#413333] selection:bg-[#F2765E] selection:text-white pt-10 sm:pt-12 pb-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+        {/* Partie haute : marque, description, réseaux */}
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 pb-8 border-b border-[#413333]/10">
+          {/* Marque et description */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3">
-            <a 
-              href="#accueil" 
-              className="group flex items-center gap-2.5 text-lg font-bold tracking-wider transition-colors"
-            >
-              <div 
-                className="p-2 rounded-xl transition-transform duration-300 group-hover:scale-105"
-                style={{ backgroundColor: "#315B8C", color: "#F5EBDD" }}
-              >
+            <a href="#accueil" className="flex items-center gap-2.5 text-lg font-bold tracking-wider">
+              <div className="shrink-0 p-2 rounded-xl bg-[#315B8C] text-[#F5EBDD]">
                 <FileBraces size={20} />
               </div>
-              <span className="font-extrabold" style={{ color: "#413333" }}>
-                DEV<span style={{ color: "#F2765E" }}>PORTFOLIO</span>
+              <span className="font-extrabold text-[#413333]">
+                DEV<span className="text-[#F2765E]">PORTFOLIO</span>
               </span>
             </a>
-            <p className="text-xs sm:text-sm max-w-sm leading-relaxed" style={{ color: "#315B8C" }}>
-              Développeur Web & Support IT. Conception d'applications modernes, performantes et sur-mesure.
+            <p className="max-w-sm text-xs sm:text-sm leading-relaxed text-[#315B8C]">
+              Développeur web PHP / Magento 2 et React. Conception d'applications
+              modernes, performantes et sur mesure.
             </p>
           </div>
 
-          {/* Réseaux Sociaux & Bouton Retour en haut */}
-          <div className="flex items-center gap-3">
-            
-            {/* GitHub */}
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 hover:bg-white transition-all duration-300 hover:shadow-sm group"
-              style={{ color: "#315B8C" }}
-            >
-              <Github size={18} className="group-hover:scale-110 transition-transform" />
-            </a>
+          {/* Réseaux et retour en haut */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {socials.map((social) => {
+              const Icon = social.icon;
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  {...(social.external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 text-[#315B8C] transition-colors duration-300 hover:bg-white hover:text-[#F2765E]"
+                >
+                  <Icon size={18} />
+                </a>
+              );
+            })}
 
-            {/* LinkedIn */}
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 hover:bg-white transition-all duration-300 hover:shadow-sm group"
-              style={{ color: "#315B8C" }}
-            >
-              <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
-            </a>
+            <div className="hidden sm:block h-6 w-px bg-[#413333]/15 mx-1" />
 
-            {/* Facebook */}
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 hover:bg-white transition-all duration-300 hover:shadow-sm group"
-              style={{ color: "#315B8C" }}
-            >
-              <Facebook size={18} className="group-hover:scale-110 transition-transform" />
-            </a>
-
-            {/* Mail */}
-            <a
-              href="mailto:rakotoarimananamario6@gmail.com"
-              aria-label="Email"
-              className="p-3 rounded-xl border border-[#413333]/15 bg-white/60 hover:bg-white transition-all duration-300 hover:shadow-sm group"
-              style={{ color: "#315B8C" }}
-            >
-              <Mail size={18} className="group-hover:scale-110 transition-transform" />
-            </a>
-
-            {/* Séparateur vertical */}
-            <div className="h-6 w-px bg-[#413333]/15 mx-1" />
-
-            {/* Bouton Scroll Top */}
             <button
+              type="button"
               onClick={scrollToTop}
               aria-label="Retour en haut"
-              className="p-3 rounded-xl transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md group"
-              style={{ backgroundColor: "#F2765E", color: "#ffffff" }}
+              className="p-3 rounded-xl bg-[#F2765E] text-white shadow-sm transition-shadow duration-300 hover:shadow-md cursor-pointer"
             >
-              <ArrowUp size={18} className="group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUp size={18} />
             </button>
-
           </div>
         </div>
 
-        {/* Partie Basse : Copyright & Mentions */}
-        <div 
-          className="flex flex-col sm:flex-row items-center justify-between text-xs gap-4 font-medium"
-          style={{ color: "#413333" }}
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
+        {/* Partie basse : copyright */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs font-medium">
           <p className="text-center sm:text-left">
-            © {currentYear} <span className="font-bold" style={{ color: "#F2765E" }}>RAKOTOARIMANANA MARIO</span>. Tous droits réservés.
+            © {currentYear}{" "}
+            <span className="font-bold text-[#F2765E]">RAKOTOARIMANANA Mario</span>.
+            Tous droits réservés.
           </p>
-          <p className="text-center sm:text-right opacity-80" style={{ color: "#315B8C" }}>
-            Conçu & développé avec React & Tailwind CSS
+          <p className="text-center sm:text-right text-[#315B8C]/80">
+            Conçu et développé avec React et Tailwind CSS
           </p>
         </div>
-
       </div>
     </footer>
   );

@@ -1,29 +1,46 @@
-import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { 
-  Mail, 
-  Phone, 
-  Facebook, 
-  MessageSquare, 
-  User, 
-  AtSign, 
-  Send, 
-  Loader2, 
-  CheckCircle2, 
-  Clock 
+import { useState } from "react";
+import {
+  Mail,
+  Phone,
+  Facebook,
+  MessageSquare,
+  User,
+  AtSign,
+  Send,
+  Loader2,
+  CheckCircle2,
+  Clock,
 } from "lucide-react";
+
+const coordonnees = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "rakotoarimananamario6@gmail.com",
+    href: "mailto:rakotoarimananamario6@gmail.com",
+    external: false,
+  },
+  {
+    icon: Phone,
+    label: "WhatsApp / Tél",
+    value: "+261 34 54 959 21",
+    href: "https://wa.me/261345495921",
+    external: true,
+  },
+  {
+    icon: Facebook,
+    label: "Facebook",
+    value: "Rakotoarimanana Mario",
+    href: "https://facebook.com",
+    external: true,
+  },
+];
+
+const inputClass =
+  "w-full rounded-xl border border-[#413333]/20 bg-[#F5EBDD]/40 text-sm text-[#413333] transition-colors duration-200 focus:border-[#315B8C] focus:bg-white focus:outline-none";
 
 function Contact() {
   const [status, setStatus] = useState({ submitting: false, succeeded: false, error: false });
-
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: "ease-out-cubic",
-    });
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,9 +53,7 @@ function Contact() {
       const response = await fetch("https://formspree.io/f/xaenkpjr", {
         method: "POST",
         body: formData,
-        headers: {
-          Accept: "application/json",
-        },
+        headers: { Accept: "application/json" },
       });
 
       if (response.ok) {
@@ -53,215 +68,142 @@ function Contact() {
   };
 
   return (
-    <section 
-      className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[#F2765E] selection:text-white"
-      style={{ backgroundColor: '#F5EBDD' }}
+    <section
+      id="contact"
+      className="relative scroll-mt-24 overflow-hidden bg-[#F5EBDD] text-[#413333] selection:bg-[#F2765E] selection:text-white py-16 sm:py-24"
     >
-      <div className="w-full max-w-6xl mx-auto space-y-16">
-        
-        {/* En-tête de section */}
-        <div className="text-center max-w-2xl mx-auto space-y-4" data-aos="fade-down">
-          <span 
-            className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full border border-[#413333]/15 inline-block"
-            style={{ color: '#413333' }}
-          >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-16">
+        {/* En-tête */}
+        <div className="mx-auto max-w-2xl text-center space-y-4">
+          <span className="inline-block rounded-full border border-[#413333]/15 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#413333]">
             Contact & Collaboration
           </span>
-          <h1 
-            className="text-3xl sm:text-5xl font-bold tracking-tight"
-            style={{ color: '#F2765E' }}
-          >
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F2765E]">
             Travaillons ensemble
-          </h1>
-          <p 
-            className="text-base sm:text-lg leading-relaxed font-normal"
-            style={{ color: '#315B8C' }}
-          >
-            Un projet web en vue ou une opportunité de collaboration ? Envoyez-moi un message pour en discuter.
+          </h2>
+          <p className="text-base sm:text-lg leading-relaxed text-[#315B8C]">
+            Un projet web en vue ou une opportunité de collaboration ?
+            Envoyez-moi un message pour en discuter.
           </p>
         </div>
 
-        {/* Grille principale */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
-          {/* Colonne Gauche : Coordonnées */}
-          <div className="lg:col-span-5 space-y-6" data-aos="fade-right" data-aos-delay="100">
-            
-            <div className="bg-white/70 border border-[#413333]/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm backdrop-blur-sm">
-              <h2 className="text-xl font-bold" style={{ color: '#F2765E' }}>
-                Coordonnées
-              </h2>
-              
-              <div className="space-y-4">
-                {/* Email */}
-                <a 
-                  href="mailto:rakotoarimananamario6@gmail.com"
-                  className="group flex items-center gap-4 p-3.5 rounded-xl border border-transparent hover:border-[#315B8C]/20 hover:bg-white transition-all duration-300"
-                >
-                  <div 
-                    className="p-3 rounded-lg shrink-0 transition-transform duration-300 group-hover:scale-105"
-                    style={{ backgroundColor: '#315B8C', color: '#F5EBDD' }}
-                  >
-                    <Mail size={20} />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium uppercase tracking-wider opacity-70" style={{ color: '#413333' }}>
-                      Email
-                    </p>
-                    <p className="text-xs sm:text-sm font-semibold truncate" style={{ color: '#315B8C' }}>
-                      rakotoarimananamario6@gmail.com
-                    </p>
-                  </div>
-                </a>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start">
+          {/* Coordonnées */}
+          <div className="lg:col-span-5">
+            <div className="rounded-2xl border border-[#413333]/10 bg-white/70 p-5 sm:p-8 space-y-6 shadow-sm">
+              <h3 className="text-xl font-bold text-[#F2765E]">Coordonnées</h3>
 
-                {/* WhatsApp / Téléphone */}
-                <a 
-                  href="https://wa.me/261345495921" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="group flex items-center gap-4 p-3.5 rounded-xl border border-transparent hover:border-[#315B8C]/20 hover:bg-white transition-all duration-300"
-                >
-                  <div 
-                    className="p-3 rounded-lg shrink-0 transition-transform duration-300 group-hover:scale-105"
-                    style={{ backgroundColor: '#315B8C', color: '#F5EBDD' }}
-                  >
-                    <Phone size={20} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-wider opacity-70" style={{ color: '#413333' }}>
-                      WhatsApp / Tél
-                    </p>
-                    <p className="text-xs sm:text-sm font-semibold" style={{ color: '#315B8C' }}>
-                      +261 34 54 959 21
-                    </p>
-                  </div>
-                </a>
-
-                {/* Facebook */}
-                <a 
-                  href="https://facebook.com" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="group flex items-center gap-4 p-3.5 rounded-xl border border-transparent hover:border-[#315B8C]/20 hover:bg-white transition-all duration-300"
-                >
-                  <div 
-                    className="p-3 rounded-lg shrink-0 transition-transform duration-300 group-hover:scale-105"
-                    style={{ backgroundColor: '#315B8C', color: '#F5EBDD' }}
-                  >
-                    <Facebook size={20} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-wider opacity-70" style={{ color: '#413333' }}>
-                      Facebook
-                    </p>
-                    <p className="text-xs sm:text-sm font-semibold" style={{ color: '#315B8C' }}>
-                      Rakotoarimanana Mario
-                    </p>
-                  </div>
-                </a>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+                {coordonnees.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      {...(item.external ? { target: "_blank", rel: "noreferrer" } : {})}
+                      className="flex items-center gap-4 rounded-xl border border-transparent p-3 transition-colors duration-300 hover:border-[#315B8C]/20 hover:bg-white"
+                    >
+                      <div className="shrink-0 rounded-lg bg-[#315B8C] p-3 text-[#F5EBDD]">
+                        <Icon size={20} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-medium uppercase tracking-wider text-[#413333]/70">
+                          {item.label}
+                        </p>
+                        <p className="break-all text-xs sm:text-sm font-semibold text-[#315B8C]">
+                          {item.value}
+                        </p>
+                      </div>
+                    </a>
+                  );
+                })}
               </div>
 
-              {/* Statut de disponibilité */}
-              <div 
-                className="pt-4 border-t border-[#413333]/10 flex items-center gap-3 text-xs sm:text-sm font-medium"
-                style={{ color: '#413333' }}
-              >
-                <Clock size={16} style={{ color: '#F2765E' }} />
+              <div className="flex items-center gap-3 border-t border-[#413333]/10 pt-4 text-xs sm:text-sm font-medium text-[#413333]">
+                <Clock size={16} className="shrink-0 text-[#F2765E]" />
                 <span>Disponible pour de nouveaux projets</span>
               </div>
             </div>
-
           </div>
 
-          {/* Colonne Droite : Formulaire */}
-          <div className="lg:col-span-7" data-aos="fade-left" data-aos-delay="200">
-            <div className="bg-white border border-[#413333]/10 rounded-2xl p-6 sm:p-8 shadow-sm">
-              
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#413333]/10">
-                <MessageSquare size={20} style={{ color: '#F2765E' }} />
-                <h2 className="text-xl font-bold" style={{ color: '#413333' }}>
-                  Envoyer un message
-                </h2>
+          {/* Formulaire */}
+          <div className="lg:col-span-7">
+            <div className="rounded-2xl border border-[#413333]/10 bg-white p-5 sm:p-8 shadow-sm">
+              <div className="mb-6 flex items-center gap-3 border-b border-[#413333]/10 pb-4">
+                <MessageSquare size={20} className="shrink-0 text-[#F2765E]" />
+                <h3 className="text-xl font-bold text-[#413333]">Envoyer un message</h3>
               </div>
 
               {status.succeeded ? (
-                <div 
-                  className="py-12 px-6 rounded-xl text-center space-y-3"
-                  style={{ backgroundColor: '#F5EBDD' }}
-                >
-                  <CheckCircle2 size={32} className="mx-auto" style={{ color: '#315B8C' }} />
-                  <h3 className="text-lg font-bold" style={{ color: '#F2765E' }}>
-                    Message bien reçu !
-                  </h3>
-                  <p className="text-xs sm:text-sm max-w-md mx-auto" style={{ color: '#413333' }}>
+                <div className="rounded-xl bg-[#F5EBDD] px-6 py-12 text-center space-y-3">
+                  <CheckCircle2 size={32} className="mx-auto text-[#315B8C]" />
+                  <p className="text-lg font-bold text-[#F2765E]">Message bien reçu !</p>
+                  <p className="mx-auto max-w-md text-xs sm:text-sm text-[#413333]">
                     Merci pour votre message. Je reviendrai vers vous dans les plus brefs délais.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  
-                  {/* Champ Nom */}
-                  <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#413333' }}>
-                      Nom complet
-                    </label>
-                    <div className="relative">
-                      <input
-                        name="name"
-                        type="text"
-                        required
-                        placeholder="Jean Dupont"
-                        className="w-full bg-[#F5EBDD]/40 border border-[#413333]/20 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-[#315B8C] focus:bg-white transition-all duration-200"
-                        style={{ color: '#413333' }}
-                      />
-                      <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 opacity-50" style={{ color: '#413333' }} />
+                  {/* Nom et email côte à côte à partir de la tablette */}
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <label htmlFor="contact-name" className="text-xs font-semibold uppercase tracking-wider text-[#413333]">
+                        Nom complet
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="contact-name"
+                          name="name"
+                          type="text"
+                          required
+                          placeholder="Jean Dupont"
+                          className={`${inputClass} py-3 pl-11 pr-4`}
+                        />
+                        <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#413333]/50" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-wider text-[#413333]">
+                        Adresse email
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="contact-email"
+                          name="email"
+                          type="email"
+                          required
+                          placeholder="jean.dupont@exemple.com"
+                          className={`${inputClass} py-3 pl-11 pr-4`}
+                        />
+                        <AtSign size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#413333]/50" />
+                      </div>
                     </div>
                   </div>
 
-                  {/* Champ Email */}
                   <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#413333' }}>
-                      Adresse Email
-                    </label>
-                    <div className="relative">
-                      <input
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="jean.dupont@exemple.com"
-                        className="w-full bg-[#F5EBDD]/40 border border-[#413333]/20 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-[#315B8C] focus:bg-white transition-all duration-200"
-                        style={{ color: '#413333' }}
-                      />
-                      <AtSign size={18} className="absolute left-4 top-1/2 -translate-y-1/2 opacity-50" style={{ color: '#413333' }} />
-                    </div>
-                  </div>
-
-                  {/* Champ Message */}
-                  <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#413333' }}>
+                    <label htmlFor="contact-message" className="text-xs font-semibold uppercase tracking-wider text-[#413333]">
                       Votre message
                     </label>
                     <textarea
+                      id="contact-message"
                       name="message"
                       required
                       placeholder="Décrivez votre projet ou votre demande..."
-                      className="w-full bg-[#F5EBDD]/40 border border-[#413333]/20 rounded-xl p-4 text-sm focus:outline-none focus:border-[#315B8C] focus:bg-white transition-all duration-200 resize-none h-36"
-                      style={{ color: '#413333' }}
+                      className={`${inputClass} h-36 resize-none p-4`}
                     />
                   </div>
 
                   {status.error && (
                     <p className="text-xs font-medium text-red-600">
-                      Une erreur est survenue lors de l'envoi. Veuillez réessayer.
+                      L'envoi a échoué. Vérifiez votre connexion puis réessayez.
                     </p>
                   )}
 
-                  {/* Bouton d'action */}
                   <button
                     type="submit"
                     disabled={status.submitting}
-                    className="w-full py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ backgroundColor: '#F2765E', color: '#ffffff' }}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#F2765E] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-shadow duration-300 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {status.submitting ? (
                       <>
@@ -275,13 +217,10 @@ function Contact() {
                       </>
                     )}
                   </button>
-
                 </form>
               )}
-
             </div>
           </div>
-
         </div>
       </div>
     </section>

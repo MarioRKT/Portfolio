@@ -74,39 +74,27 @@ function Services() {
   return (
     <section
       id="services"
-      className="relative scroll-mt-24 bg-[#F5EBDD] text-[#413333] selection:bg-[#F2765E] selection:text-[#F5EBDD] py-24 sm:py-28 overflow-hidden"
+      className="relative scroll-mt-24 overflow-hidden bg-[#F5EBDD] text-[#413333] selection:bg-[#F2765E] selection:text-[#F5EBDD] py-16 sm:py-24"
     >
-      {/* Texture de fond neutre discrète */}
-      <div 
+      {/* Texture de fond */}
+      <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(#315B8C 1px, transparent 1px)`,
-          backgroundSize: '24px 24px'
+          backgroundSize: "24px 24px",
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* En-tête de section */}
-        <div className="max-w-2xl">
-          <span 
-            data-aos="fade-down"
-            className="text-xs font-mono font-bold tracking-widest text-[#F2765E] uppercase bg-[#F2765E]/10 px-3 py-1 rounded-md border-l-2 border-[#F2765E]"
-          >
+        <div className="max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
+          <span className="inline-block text-xs font-mono font-bold tracking-widest text-[#F2765E] uppercase bg-[#F2765E]/10 px-3 py-1 rounded-md border-l-2 border-[#F2765E]">
             // OFFRES & EXPERTISES
           </span>
-          <h2 
-            data-aos="fade-up"
-            data-aos-delay="100"
-            className="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#F2765E]"
-          >
+          <h2 className="mt-3 text-2xl sm:text-4xl font-black tracking-tight text-[#F2765E]">
             Ce que je peux faire pour vous
           </h2>
-          <p 
-            data-aos="fade-up"
-            data-aos-delay="200"
-            className="mt-4 text-base sm:text-lg leading-relaxed text-[#315B8C] font-medium"
-          >
+          <p className="mt-4 text-base sm:text-lg leading-relaxed text-[#315B8C] font-medium">
             Du site vitrine à la boutique en ligne en passant par l'application
             métier, je prends en charge votre projet de la conception jusqu'à
             la mise en ligne.
@@ -114,26 +102,24 @@ function Services() {
         </div>
 
         {/* Services principaux */}
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
-          {mainServices.map((service, index) => {
+        <div className="mt-10 sm:mt-14 grid gap-6 sm:gap-8 lg:grid-cols-2">
+          {mainServices.map((service) => {
             const Icon = service.icon;
             return (
               <article
                 key={service.title}
-                data-aos="fade-up"
-                data-aos-delay={index * 150 + 200}
-                className="relative flex flex-col rounded-2xl border-2 border-[#315B8C]/20 bg-white/70 p-7 sm:p-9 shadow-sm hover:border-[#F2765E] transition-all duration-300"
+                className="flex flex-col rounded-2xl border-2 border-[#315B8C]/20 bg-white/70 p-5 sm:p-8 lg:p-9 shadow-sm transition-colors duration-300 hover:border-[#F2765E]"
               >
-                <div className="flex items-center gap-4">
-                  <div className="p-3.5 rounded-xl bg-[#315B8C]/10 border border-[#315B8C]/20 text-[#315B8C]">
-                    <Icon size={26} />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="shrink-0 p-3 sm:p-3.5 rounded-xl bg-[#315B8C]/10 border border-[#315B8C]/20 text-[#315B8C]">
+                    <Icon size={24} />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-[#F2765E]">
+                  <h3 className="text-lg sm:text-2xl font-black text-[#F2765E]">
                     {service.title}
                   </h3>
                 </div>
 
-                <p className="mt-5 leading-relaxed text-[#315B8C] font-medium">
+                <p className="mt-5 text-sm sm:text-base leading-relaxed text-[#315B8C] font-medium">
                   {service.description}
                 </p>
 
@@ -143,10 +129,7 @@ function Services() {
                       key={feature}
                       className="flex items-start gap-3 text-sm text-[#413333] font-medium"
                     >
-                      <Check
-                        size={18}
-                        className="mt-0.5 flex-shrink-0 text-[#F2765E]"
-                      />
+                      <Check size={18} className="mt-0.5 shrink-0 text-[#F2765E]" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -154,20 +137,24 @@ function Services() {
 
                 {service.proof && (
                   <div className="mt-6 rounded-xl border-l-4 border-[#315B8C] bg-[#315B8C]/5 px-4 py-3 text-xs sm:text-sm leading-relaxed text-[#413333] font-medium">
-                    <strong className="text-[#315B8C] font-bold block mb-0.5">Mise en pratique :</strong>
+                    <strong className="block mb-0.5 text-[#315B8C] font-bold">
+                      Mise en pratique :
+                    </strong>
                     {service.proof}
                   </div>
                 )}
 
-                <div className="mt-auto pt-6 border-t border-[#315B8C]/10 flex flex-wrap gap-2 font-mono">
-                  {service.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-lg bg-[#315B8C]/10 border border-[#315B8C]/20 px-3 py-1 text-xs font-bold text-[#315B8C]"
-                    >
-                      #{tech}
-                    </span>
-                  ))}
+                <div className="mt-auto pt-6">
+                  <div className="pt-6 border-t border-[#315B8C]/10 flex flex-wrap gap-2 font-mono">
+                    {service.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-lg bg-[#315B8C]/10 border border-[#315B8C]/20 px-3 py-1 text-xs font-bold text-[#315B8C]"
+                      >
+                        #{tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </article>
             );
@@ -175,23 +162,15 @@ function Services() {
         </div>
 
         {/* Services complémentaires */}
-        <div className="mt-20">
-          <h3 
-            data-aos="fade-right"
-            className="text-lg font-mono font-bold text-[#F2765E] uppercase tracking-wider"
-          >
+        <div className="mt-14 sm:mt-20">
+          <h3 className="text-base sm:text-lg font-mono font-bold text-[#F2765E] uppercase tracking-wider text-center lg:text-left">
             // Services complémentaires
           </h3>
-          <div className="mt-6 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {extraServices.map((service, index) => {
+          <div className="mt-6 grid gap-x-8 gap-y-8 sm:gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {extraServices.map((service) => {
               const Icon = service.icon;
               return (
-                <div
-                  key={service.title}
-                  data-aos="fade-up"
-                  data-aos-delay={index * 100}
-                  className="border-t-2 border-[#315B8C]/20 pt-6"
-                >
+                <div key={service.title} className="border-t-2 border-[#315B8C]/20 pt-6">
                   <div className="p-2.5 w-fit rounded-lg bg-[#315B8C]/10 text-[#315B8C]">
                     <Icon size={22} />
                   </div>
@@ -207,14 +186,10 @@ function Services() {
           </div>
         </div>
 
-        {/* Appel à l'action (Bloc plein solide sans dégradé) */}
-        <div 
-          data-aos="zoom-in"
-          data-aos-delay="200"
-          className="mt-20 flex flex-col items-start gap-6 rounded-2xl border-2 border-[#315B8C] bg-white/80 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10 shadow-md"
-        >
-          <div>
-            <p className="text-xl font-black text-[#F2765E]">
+        {/* Appel à l'action */}
+        <div className="mt-14 sm:mt-20 flex flex-col gap-6 rounded-2xl border-2 border-[#315B8C] bg-white/80 p-6 sm:p-10 shadow-md md:flex-row md:items-center md:justify-between">
+          <div className="text-center md:text-left">
+            <p className="text-lg sm:text-xl font-black text-[#F2765E]">
               Vous avez un projet en tête ?
             </p>
             <p className="mt-1 text-[#315B8C] font-medium text-sm sm:text-base">
@@ -224,12 +199,11 @@ function Services() {
           </div>
           <a
             href="#contact"
-            className="flex-shrink-0 font-mono font-bold text-xs tracking-wider uppercase px-7 py-4 rounded-xl bg-[#F2765E] text-[#F5EBDD] border-2 border-[#F2765E] shadow-sm transition-all duration-300 hover:bg-transparent hover:text-[#F2765E] active:scale-95"
+            className="shrink-0 w-full md:w-auto text-center font-mono font-bold text-xs tracking-wider uppercase px-7 py-4 rounded-xl bg-[#F2765E] text-[#F5EBDD] border-2 border-[#F2765E] shadow-sm transition-colors duration-300 hover:bg-transparent hover:text-[#F2765E]"
           >
             Discuter de mon projet
           </a>
         </div>
-
       </div>
     </section>
   );
