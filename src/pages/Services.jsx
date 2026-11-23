@@ -4,7 +4,7 @@ import {
   Server,
   LayoutDashboard,
   Database,
-  LifeBuoy,
+  ShoppingCart,
   Check,
 } from "lucide-react";
 
@@ -14,57 +14,59 @@ const mainServices = [
     icon: Globe,
     title: "Création de sites web",
     description:
-      "Je conçois des sites vitrines et des pages de présentation rapides, responsives et faciles à mettre à jour, pour que votre activité soit visible et crédible en ligne.",
+      "Je conçois des sites vitrines modernes, interactifs et responsives pour les PME et les startups, afin que votre activité soit visible et crédible en ligne.",
     features: [
       "Design adapté au mobile, à la tablette et à l'ordinateur",
       "Intégration fidèle de vos maquettes",
-      "Formulaire de contact et optimisation du référencement de base",
+      "Fonctionnalités adaptées à votre activité (réservation, menu, contact)",
       "Mise en ligne et accompagnement après livraison",
     ],
-    stack: ["React.js", "Tailwind CSS", "Bootstrap", "Blade"],
+    stack: ["React.js", "Tailwind CSS", "Bootstrap", "Material UI"],
+    proof:
+      "En freelance depuis janvier 2026 : des sites réalisés pour des agences de voyages, des restaurants et d'autres PME.",
   },
   {
     icon: AppWindow,
     title: "Applications web",
     description:
-      "Je développe des applications sur mesure pour gérer vos données, vos utilisateurs et vos processus internes, du back-end jusqu'à l'interface.",
+      "Je développe et maintiens des applications sur mesure pour gérer vos données, vos utilisateurs et vos processus internes, du back-end jusqu'à l'interface.",
     features: [
-      "Authentification et gestion des rôles utilisateurs",
+      "Authentification et gestion des droits d'accès",
       "Gestion complète des données (création, modification, suppression)",
       "Filtres, recherche et pagination",
-      "Tableaux de bord avec graphiques dynamiques",
+      "Tableaux de bord avec graphiques pour l'aide à la décision",
     ],
-    stack: ["Laravel", "React.js", "MySQL", "API REST"],
+    stack: ["Laravel", "Symfony", "React.js", "MySQL", "API REST"],
     proof:
-      "Réalisé pour le Ministère de l'Agriculture et de l'Élevage : une application de suivi des projets et des réalisations par région.",
+      "Réalisé pour le Ministère de l'Agriculture et de l'Élevage : une application de collecte de données et un tableau de bord de suivi des projets régionaux.",
   },
 ];
 
 // Services complémentaires issus du CV
 const extraServices = [
   {
+    icon: ShoppingCart,
+    title: "Sites e-commerce Magento 2",
+    description:
+      "Personnalisation, refonte du design, maintenance et audit des performances de boutiques en ligne Magento 2.",
+  },
+  {
     icon: Server,
     title: "Développement d'API REST",
     description:
-      "Création d'API Laravel sécurisées et documentées pour connecter votre application mobile ou votre front-end.",
+      "Création d'API sécurisées avec Laravel ou Symfony, testées avec Postman, pour connecter votre front-end ou votre application mobile.",
   },
   {
     icon: LayoutDashboard,
     title: "Tableaux de bord",
     description:
-      "Visualisation de vos indicateurs avec des graphiques Chart.js clairs et mis à jour en temps réel.",
+      "Interfaces d'administration avec graphiques dynamiques pour suivre vos indicateurs et faciliter vos décisions.",
   },
   {
     icon: Database,
     title: "Bases de données",
     description:
-      "Conception, optimisation et migration de bases MySQL ou PostgreSQL adaptées à votre projet.",
-  },
-  {
-    icon: LifeBuoy,
-    title: "Support informatique",
-    description:
-      "Installation et configuration de logiciels, diagnostic de pannes et assistance aux utilisateurs.",
+      "Conception, optimisation et migration de bases MySQL ou PostgreSQL, avec un environnement de travail sous Docker et Git.",
   },
 ];
 
@@ -105,9 +107,9 @@ function Services() {
             data-aos-delay="200"
             className="mt-4 text-base sm:text-lg leading-relaxed text-[#315B8C] font-medium"
           >
-            Du simple site de présentation à l'application métier complète, je
-            prends en charge votre projet de la conception jusqu'à la mise en
-            ligne.
+            Du site vitrine à la boutique en ligne en passant par l'application
+            métier, je prends en charge votre projet de la conception jusqu'à
+            la mise en ligne.
           </p>
         </div>
 
@@ -157,7 +159,7 @@ function Services() {
                   </div>
                 )}
 
-                <div className="mt-8 pt-6 border-t border-[#315B8C]/10 flex flex-wrap gap-2 font-mono">
+                <div className="mt-auto pt-6 border-t border-[#315B8C]/10 flex flex-wrap gap-2 font-mono">
                   {service.stack.map((tech) => (
                     <span
                       key={tech}
