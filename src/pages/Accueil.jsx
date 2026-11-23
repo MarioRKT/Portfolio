@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import pdp from "../../public/images/photo_CV.jpeg";
-=======
-import pdp from '../../public/images/pdp.png';
->>>>>>> 9c37433335960421ea5af66f24e015d5a92eb919
+
 
 function Accueil() {
   return (
