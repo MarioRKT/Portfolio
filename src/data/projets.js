@@ -25,11 +25,10 @@ export const projects = [
     technologies: [
       "HTML",
       "Tailwind CSS",
-      "PHP",
-      "Laravel",
+      "PHP/Laravel",
       "React.js",
       "API REST",
-      "MySQL",
+      "MySQL"
     ],
   },
 
@@ -44,8 +43,8 @@ export const projects = [
       "HTML",
       "Tailwind CSS",
       "JavaScript",
-      "PHP",
-      "Symfony",
+      "PHP/Symfony",
+      "MySQL"
     ],
   },
 
@@ -60,8 +59,8 @@ export const projects = [
       "HTML",
       "Tailwind CSS",
       "JavaScript",
-      "PHP",
-      "Laravel",
+      "PHP/Laravel",
+      "MySQL"
     ],
   },
 ];

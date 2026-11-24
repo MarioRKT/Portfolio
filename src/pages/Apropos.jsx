@@ -28,14 +28,24 @@ const parcours = [
 
 // Frameworks mis en avant
 const frameworks = [
-  { name: "Magento 2", usage: "Boutiques en ligne et architectures e-commerce" },
+  {
+    name: "Magento 2",
+    usage: "Boutiques en ligne et architectures e-commerce",
+  },
   { name: "Laravel", usage: "API REST, authentification et back-end robuste" },
   { name: "React", usage: "Interfaces dynamiques et composants réutilisables" },
   { name: "Symfony", usage: "Applications web PHP structurées" },
 ];
 
 const langages = ["PHP", "JavaScript", "HTML5", "CSS3", "SQL"];
-const outils = ["Tailwind CSS", "Bootstrap", "MySQL", "PostgreSQL", "Docker", "Git"];
+const outils = [
+  "Tailwind CSS",
+  "Bootstrap",
+  "MySQL",
+  "PostgreSQL",
+  "Docker",
+  "Git",
+];
 
 function Apropos() {
   return (
@@ -87,21 +97,21 @@ function Apropos() {
                   Mario Rakotoarimanana
                 </h2>
                 <p className="text-base sm:text-lg font-mono font-bold text-[#315B8C]">
-                  Développeur Web PHP / Magento 2
+                  Développeur Web Full-Stack
                 </p>
               </div>
 
               <div className="space-y-4 text-[#413333] text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
                 <p>
-                  Spécialisé dans le développement web et les architectures
-                  e-commerce, je conçois et maintiens des applications robustes
-                  centrées sur la performance et l'expérience utilisateur.
-                </p>
+                  Développeur Web Full Stack avec 2 ans d'expérience, spécialisé
+                  dans l'écosystème PHP (Laravel, Symfony, Magento 2) et
+                  React.js, je possède une expérience dans la conception, le
+                  développement et la maintenance d'applications web et de sites
+                  e-commerce.</p>
                 <p>
-                  Fort d'expériences en développement full-stack et en
-                  intégration Magento 2, je maîtrise la chaîne de production
-                  logicielle, de la conception d'API REST à la gestion de bases
-                  de données relationnelles.
+                  Je maîtrise le développement back-end, la création
+                  d'API REST, la gestion des bases de données ainsi que la
+                  conception d'interfaces modernes et responsives.
                 </p>
               </div>
 
@@ -134,63 +144,21 @@ function Apropos() {
                   <span className="absolute -left-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#F2765E] bg-[#F5EBDD] text-[#F2765E]">
                     <Briefcase size={14} />
                   </span>
-                  <p className="text-xs font-mono font-bold text-[#F2765E]">{step.period}</p>
-                  <p className="mt-1 text-base sm:text-lg font-bold text-[#315B8C]">{step.title}</p>
-                  <p className="text-xs font-mono font-bold uppercase text-[#413333]/70">{step.place}</p>
+                  <p className="text-xs font-mono font-bold text-[#F2765E]">
+                    {step.period}
+                  </p>
+                  <p className="mt-1 text-base sm:text-lg font-bold text-[#315B8C]">
+                    {step.title}
+                  </p>
+                  <p className="text-xs font-mono font-bold uppercase text-[#413333]/70">
+                    {step.place}
+                  </p>
                   <p className="mt-2 max-w-lg text-sm leading-relaxed text-[#413333]">
                     {step.detail}
                   </p>
                 </li>
               ))}
             </ol>
-          </div>
-
-          {/* Technologies */}
-          <div className="lg:col-span-2 rounded-3xl border-2 border-[#315B8C]/20 bg-white/80 p-5 sm:p-10 shadow-sm">
-            <h3 className="text-xl sm:text-2xl font-black text-[#F2765E]">Technologies</h3>
-
-            <p className="mt-6 text-xs font-mono font-bold tracking-wider text-[#315B8C] uppercase">
-              Frameworks et CMS
-            </p>
-            <ul className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              {frameworks.map((fw) => (
-                <li
-                  key={fw.name}
-                  className="rounded-2xl border border-[#315B8C]/20 bg-[#F5EBDD]/50 px-4 py-3"
-                >
-                  <p className="font-bold text-[#F2765E]">{fw.name}</p>
-                  <p className="mt-0.5 text-xs text-[#413333]">{fw.usage}</p>
-                </li>
-              ))}
-            </ul>
-
-            <p className="mt-6 text-xs font-mono font-bold tracking-wider text-[#315B8C] uppercase">
-              Langages
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {langages.map((lang) => (
-                <span
-                  key={lang}
-                  className="rounded-lg border border-[#315B8C]/20 bg-[#315B8C]/10 px-3 py-1 text-xs font-mono font-bold text-[#315B8C]"
-                >
-                  #{lang}
-                </span>
-              ))}
-            </div>
-
-            <p className="mt-6 text-xs font-mono font-bold tracking-wider text-[#315B8C] uppercase">
-              Outils et bases de données
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {outils.map((tool) => (
-                <span
-                  key={tool}
-                  className="rounded-lg border border-[#F2765E]/20 bg-[#F2765E]/10 px-3 py-1 text-xs font-mono font-bold text-[#F2765E]"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </div>
