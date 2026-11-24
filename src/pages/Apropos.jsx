@@ -1,51 +1,6 @@
-import { Download, Sparkles, Briefcase } from "lucide-react";
+import { Download, Sparkles, Briefcase, Check } from "lucide-react";
 import img from "../../public/images/photo_CV.jpeg";
-
-// Expériences professionnelles (du plus récent au plus ancien)
-const parcours = [
-  {
-    period: "Mars 2026 - Présent",
-    title: "Développeur PHP / Magento 2",
-    place: "ATOUT Service MADA",
-    detail:
-      "Maintenance applicative, développement de fonctionnalités sur mesure et intégration e-commerce sous Magento 2 et PHP.",
-  },
-  {
-    period: "Sept. - Nov. 2024",
-    title: "Stage Développeur Web Full-Stack",
-    place: "Ministère de l'Agriculture et de l'Élevage",
-    detail:
-      "Conception et développement d'une application de suivi des projets régionaux avec Laravel, React.js et Chart.js.",
-  },
-  {
-    period: "Sept. - Nov. 2023",
-    title: "Stage Support Informatique",
-    place: "Ministère de l'Agriculture et de l'Élevage",
-    detail:
-      "Assistance aux utilisateurs, diagnostic de pannes logicielles, installation et configuration des équipements.",
-  },
-];
-
-// Frameworks mis en avant
-const frameworks = [
-  {
-    name: "Magento 2",
-    usage: "Boutiques en ligne et architectures e-commerce",
-  },
-  { name: "Laravel", usage: "API REST, authentification et back-end robuste" },
-  { name: "React", usage: "Interfaces dynamiques et composants réutilisables" },
-  { name: "Symfony", usage: "Applications web PHP structurées" },
-];
-
-const langages = ["PHP", "JavaScript", "HTML5", "CSS3", "SQL"];
-const outils = [
-  "Tailwind CSS",
-  "Bootstrap",
-  "MySQL",
-  "PostgreSQL",
-  "Docker",
-  "Git",
-];
+import { experiences } from "../data/experiences";
 
 function Apropos() {
   return (
@@ -107,18 +62,19 @@ function Apropos() {
                   dans l'écosystème PHP (Laravel, Symfony, Magento 2) et
                   React.js, je possède une expérience dans la conception, le
                   développement et la maintenance d'applications web et de sites
-                  e-commerce.</p>
+                  e-commerce.
+                </p>
                 <p>
-                  Je maîtrise le développement back-end, la création
-                  d'API REST, la gestion des bases de données ainsi que la
-                  conception d'interfaces modernes et responsives.
+                  Je maîtrise le développement back-end, la création d'API REST,
+                  la gestion des bases de données ainsi que la conception
+                  d'interfaces modernes et responsives.
                 </p>
               </div>
 
               <div className="pt-2 flex justify-center lg:justify-start">
                 <a
                   href="/CV_Mario_Developpeur_Fullstack.pdf"
-                  download
+                  download="CV_Mario_Rakotoarimanana.pdf"
                   className="inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl bg-[#F2765E] px-8 py-3.5 text-sm font-bold text-[#F5EBDD] shadow-md transition-colors duration-300 hover:bg-[#315B8C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F2765E] focus-visible:ring-offset-2"
                 >
                   <span>Télécharger mon CV</span>
@@ -129,37 +85,60 @@ function Apropos() {
           </div>
         </div>
 
-        {/* 2. Expériences et technologies */}
-        <div className="grid gap-6 sm:gap-8 lg:grid-cols-5">
-          {/* Expériences */}
-          <div className="lg:col-span-3 rounded-3xl border-2 border-[#315B8C]/20 bg-white/80 p-5 sm:p-10 shadow-sm">
-            <h3 className="flex items-center gap-3 text-xl sm:text-2xl font-black text-[#F2765E]">
-              <Briefcase size={22} className="shrink-0 text-[#315B8C]" />
-              Expériences professionnelles
-            </h3>
+        {/* 2. Expériences professionnelles */}
+        <div className="rounded-3xl border-2 border-[#315B8C]/20 bg-white/80 p-5 sm:p-10 lg:p-12 shadow-sm">
+          <h3 className="flex items-center gap-3 text-xl sm:text-2xl font-black text-[#F2765E]">
+            <Briefcase size={22} className="shrink-0 text-[#315B8C]" />
+            Expériences professionnelles
+          </h3>
 
-            <ol className="mt-8 ml-4 space-y-8 border-l-2 border-[#315B8C]/20">
-              {parcours.map((step) => (
-                <li key={step.period} className="relative pl-7 sm:pl-8">
-                  <span className="absolute -left-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#F2765E] bg-[#F5EBDD] text-[#F2765E]">
-                    <Briefcase size={14} />
-                  </span>
+          <ol className="mt-8 ml-4 space-y-10 border-l-2 border-[#315B8C]/20">
+            {experiences.map((exp) => (
+              <li key={exp.id} className="relative pl-7 sm:pl-10">
+                {/* Point de la frise */}
+                <span className="absolute -left-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#F2765E] bg-[#F5EBDD] text-[#F2765E]">
+                  <Briefcase size={14} />
+                </span>
+
+                {/* Période et type */}
+                <div className="flex flex-wrap items-center gap-2">
                   <p className="text-xs font-mono font-bold text-[#F2765E]">
-                    {step.period}
+                    {exp.periode}
                   </p>
-                  <p className="mt-1 text-base sm:text-lg font-bold text-[#315B8C]">
-                    {step.title}
-                  </p>
-                  <p className="text-xs font-mono font-bold uppercase text-[#413333]/70">
-                    {step.place}
-                  </p>
-                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-[#413333]">
-                    {step.detail}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
+                  <span className="rounded-md bg-[#315B8C]/10 px-2 py-0.5 text-[11px] font-semibold text-[#315B8C]">
+                    {exp.type}
+                  </span>
+                </div>
+
+                <p className="mt-2 text-base sm:text-lg font-bold text-[#315B8C]">
+                  {exp.poste}
+                </p>
+                <p className="text-xs font-mono font-bold uppercase text-[#413333]/70">
+                  {exp.entreprise}
+                </p>
+
+                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#413333]">
+                  {exp.description}
+                </p>
+
+                {/* Missions : 1 colonne sur mobile, 2 à partir de la tablette */}
+                <ul className="mt-4 grid gap-2 md:grid-cols-2 md:gap-x-8">
+                  {exp.missions.map((mission) => (
+                    <li
+                      key={mission}
+                      className="flex items-start gap-2.5 text-sm text-[#413333]"
+                    >
+                      <Check
+                        size={16}
+                        className="mt-0.5 shrink-0 text-[#F2765E]"
+                      />
+                      <span>{mission}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
