@@ -1,27 +1,5 @@
-import img1 from "../../public/images/projet1.png";
-import { ExternalLink, FolderCode } from "lucide-react";
-
-// Petits projets (colonne de droite)
-const sideProjects = [
-  {
-    title: "Dashboard Analytics",
-    subtitle: "Application de visualisation de données",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    alt: "Aperçu du tableau de bord",
-    icon: FolderCode,
-    stack: ["Laravel", "React.js", "Tailwind"],
-  },
-  {
-    title: "Tuto Guitare Ba-Gasy",
-    subtitle: "Application interactive de tutoriel guitare",
-    image:
-      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
-    alt: "Aperçu de l'application de tutoriel guitare",
-    icon: ExternalLink,
-    stack: ["Laravel", "React.js", "Tailwind"],
-  },
-];
+import { FolderCode } from "lucide-react";
+import { projects } from "../data/projets";
 
 function Projets() {
   return (
@@ -40,7 +18,7 @@ function Projets() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* En-tête */}
-        <div className="mb-10 sm:mb-16 text-center space-y-3">
+        <div className="mb-10 sm:mb-14 text-center space-y-3">
           <span className="inline-block text-xs font-mono font-bold tracking-widest text-[#F2765E] uppercase bg-[#F2765E]/10 px-3 py-1 rounded-md border-l-2 border-[#F2765E]">
             // RÉALISATIONS RÉCENTES
           </span>
@@ -49,94 +27,63 @@ function Projets() {
           </h2>
           <p className="text-[#315B8C] font-medium text-sm sm:text-base max-w-xl mx-auto">
             Découvrez une sélection de mes travaux récents, des applications
-            web interactives aux plateformes e-commerce.
+            métier aux boutiques en ligne.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-          {/* Projet principal */}
-          <article className="lg:col-span-7 group rounded-2xl border-2 border-[#315B8C]/20 bg-white/80 p-4 sm:p-6 transition-colors duration-300 hover:border-[#F2765E] hover:shadow-md">
-            <div className="aspect-[16/10] sm:aspect-[4/3] overflow-hidden rounded-xl border border-[#315B8C]/20 bg-[#315B8C]/10">
-              <img
-                src={img1}
-                alt="Aperçu du site du lounge bar"
-                className="h-full w-full object-cover"
-              />
-            </div>
+        {/* Grille des projets : 1 colonne sur mobile, 2 à partir de la tablette */}
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
+          {projects.map((project) => (
+            <article
+              key={project.id}
+              className="flex flex-col overflow-hidden rounded-2xl border-2 border-[#315B8C]/20 bg-white/80 shadow-sm transition-colors duration-300 hover:border-[#F2765E]"
+            >
+              {/* Capture du projet, ou icône si aucune image n'est renseignée */}
+              <div className="aspect-video border-b-2 border-[#315B8C]/10 bg-[#315B8C]/10">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={`Aperçu du projet ${project.name}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center text-[#315B8C]/40">
+                    <FolderCode size={56} />
+                  </div>
+                )}
+              </div>
 
-            <div className="mt-5 sm:mt-6 space-y-3">
-              <div className="flex items-start justify-between gap-3">
-                <h3 className="min-w-0 text-xl sm:text-2xl font-black text-[#F2765E]">
-                  E-Commerce Moderne
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                {/* Catégorie */}
+                <span className="w-fit rounded-md bg-[#F2765E]/10 px-2.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-[#F2765E]">
+                  {project.category}
+                </span>
+
+                <h3 className="mt-3 text-lg sm:text-xl font-black leading-snug text-[#315B8C]">
+                  {project.name}
                 </h3>
-                <div className="shrink-0 p-2 rounded-lg bg-[#315B8C]/10 text-[#315B8C] transition-colors group-hover:bg-[#F2765E] group-hover:text-[#F5EBDD]">
-                  <ExternalLink size={18} />
+
+                <p className="mt-3 text-sm leading-relaxed text-[#413333]">
+                  {project.description}
+                </p>
+
+                {/* Technologies, alignées en bas de la carte */}
+                <div className="mt-auto pt-5">
+                  <div className="flex flex-wrap gap-2 border-t border-[#315B8C]/10 pt-5 font-mono">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-lg border border-[#315B8C]/20 bg-[#315B8C]/10 px-2.5 py-1 text-[11px] sm:text-xs font-bold text-[#315B8C]"
+                      >
+                        #{tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              <p className="text-xs font-mono font-bold tracking-wider text-[#315B8C] uppercase">
-                Site web d'un lounge bar responsive
-              </p>
-
-              <div className="flex flex-wrap gap-2 pt-2 font-mono">
-                {["HTML", "CSS", "JavaScript", "Tailwind"].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 text-xs font-bold rounded-lg bg-[#315B8C]/10 border border-[#315B8C]/20 text-[#315B8C]"
-                  >
-                    #{tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </article>
-
-          {/* Petits projets : empilés sur mobile, côte à côte sur tablette, en colonne sur desktop */}
-          <div className="lg:col-span-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-1 sm:gap-8">
-            {sideProjects.map((project) => {
-              const Icon = project.icon;
-              return (
-                <article
-                  key={project.title}
-                  className="group rounded-2xl border-2 border-[#315B8C]/20 bg-white/80 p-4 sm:p-5 transition-colors duration-300 hover:border-[#F2765E] hover:shadow-md"
-                >
-                  <div className="aspect-video overflow-hidden rounded-xl border border-[#315B8C]/20 bg-[#315B8C]/10">
-                    <img
-                      src={project.image}
-                      alt={project.alt}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-
-                  <div className="mt-4 space-y-2">
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="min-w-0 text-lg sm:text-xl font-bold text-[#F2765E]">
-                        {project.title}
-                      </h3>
-                      <div className="shrink-0 p-2 rounded-lg bg-[#315B8C]/10 text-[#315B8C] transition-colors group-hover:bg-[#F2765E] group-hover:text-[#F5EBDD]">
-                        <Icon size={18} />
-                      </div>
-                    </div>
-
-                    <p className="text-xs font-mono font-bold tracking-wider text-[#315B8C] uppercase">
-                      {project.subtitle}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 pt-1 font-mono">
-                      {project.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-1 text-[11px] font-bold rounded-lg bg-[#315B8C]/10 border border-[#315B8C]/20 text-[#315B8C]"
-                        >
-                          #{tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
