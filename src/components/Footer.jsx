@@ -31,7 +31,7 @@ function Footer() {
               </span>
             </a>
             <p className="max-w-sm text-xs sm:text-sm leading-relaxed text-[#315B8C]">
-              Développeur web PHP / Magento 2 et React. Conception d'applications
+              Développeur web full-stack PHP et React. Conception d'applications
               modernes, performantes et sur mesure.
             </p>
           </div>
@@ -67,14 +67,11 @@ function Footer() {
         </div>
 
         {/* Partie basse : copyright */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs font-medium">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-xs font-medium">
           <p className="text-center sm:text-left">
             © {currentYear}{" "}
             <span className="font-bold text-[#F2765E]">RAKOTOARIMANANA Mario</span>.
             Tous droits réservés.
-          </p>
-          <p className="text-center sm:text-right text-[#315B8C]/80">
-            Conçu et développé avec React et Tailwind CSS
           </p>
         </div>
       </div>
